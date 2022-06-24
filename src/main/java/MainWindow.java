@@ -8,7 +8,7 @@ public class MainWindow extends JFrame {
     private JLabel label;
     private JTextField textField;
     private JButton buttonAnswer, buttonNext, buttonNewGame;
-    private Task riddle = new Task();
+    private Task riddle;
     private String question, answer;
     private int rand, correctly, total;
 
@@ -49,7 +49,7 @@ public class MainWindow extends JFrame {
                 rand = (int) (Math.random() * riddle.getRiddle().size());
                 question = riddle.getRiddle().get(rand).getQuestion();
                 answer = riddle.getRiddle().get(rand).getAnswer();
-                //zzz.removeRiddle(i); удаляет объект из Аррейлиста
+                riddle.removeRiddle(rand); //удаляет объект из Аррейлиста
                 label.setText(question);
                 textField.setText(null);
                 buttonAnswer.setVisible(true);
@@ -63,14 +63,17 @@ public class MainWindow extends JFrame {
             }
         });
         buttonNewGame.addActionListener(e -> {
+            riddle = new Task();
             buttonNewGame.setVisible(false);
             rand = (int) (Math.random() * riddle.getRiddle().size());
             question = riddle.getRiddle().get(rand).getQuestion();
             answer = riddle.getRiddle().get(rand).getAnswer();
-            //zzz.removeRiddle(i);
+            riddle.removeRiddle(rand);
             label.setText(question);
             buttonAnswer.setVisible(true);
             textField.setText(null);
+            correctly = 0;
+            total = 0;
         });
         this.setVisible(true);
     }
