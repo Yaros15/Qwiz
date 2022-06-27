@@ -22,7 +22,7 @@ public class MainWindow extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void go() {
+    public void run() {
         label = new JLabel(DESCRIPTION);
         textField = new JTextField("", 10);
         buttonAnswer = new JButton(ANSWER_PROPERTY);
@@ -85,6 +85,6 @@ public class MainWindow extends JFrame {
 
     public static void main(String[] args) {
         MainWindow b = new MainWindow();
-        b.go();
+        b.run();
     }
 }
