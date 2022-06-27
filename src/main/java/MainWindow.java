@@ -8,13 +8,13 @@ public class MainWindow extends JFrame {
     private static final String DESCRIPTION = "Отгадайте имена 10 персонажей из Гарри Поттера";
     private static final String CORRECTLY = "Правильно";
     private static final String WRONG = "Неправильно";
+    private static final String RESULT_TEMPLATE = "Ваш результат: %d из %d";
     private JLabel label;
     private JTextField textField;
     private JButton buttonAnswer, buttonNext, buttonNewGame;
     private Task riddle;
     private String question, answer;
     private int rand, correctly, total;
-    private String result = String.format("Ваш результат: %d из %d",correctly, total);
 
     public MainWindow() {
         super("Harry_Potter");
@@ -62,6 +62,7 @@ public class MainWindow extends JFrame {
                 buttonAnswer.setVisible(false);
                 buttonNext.setVisible(false);
                 buttonNewGame.setVisible(true);
+                String result = String.format(RESULT_TEMPLATE,correctly, total);
                 textField.setText(result);
                 label.setText(DESCRIPTION);
             }
