@@ -5,12 +5,16 @@ public class MainWindow extends JFrame {
     private static final String ANSWER_PROPERTY = "Ответить";
     private static final String NEXT_PROPERTY = "Следующий";
     private static final String NEW_GAME_PROPERTY = "Новая игра";
+    private static final String DESCRIPTION = "Отгадайте имена 10 персонажей из Гарри Поттера";
+    private static final String CORRECTLY = "Правильно";
+    private static final String WRONG = "Неправильно";
     private JLabel label;
     private JTextField textField;
     private JButton buttonAnswer, buttonNext, buttonNewGame;
     private Task riddle;
     private String question, answer;
     private int rand, correctly, total;
+    private String result = String.format("Ваш результат: %d из %d",correctly, total);
 
     public MainWindow() {
         super("Harry_Potter");
@@ -19,7 +23,7 @@ public class MainWindow extends JFrame {
     }
 
     public void go() {
-        label = new JLabel("Отгадайте имена 10 персонажей из Гарри Поттера");
+        label = new JLabel(DESCRIPTION);
         textField = new JTextField("", 10);
         buttonAnswer = new JButton(ANSWER_PROPERTY);
         buttonNext = new JButton(NEXT_PROPERTY);
@@ -36,9 +40,9 @@ public class MainWindow extends JFrame {
         buttonAnswer.addActionListener(e -> {
             if (answer.equalsIgnoreCase(textField.getText())) {
                 correctly++;
-                label.setText("Правильно");
+                label.setText(CORRECTLY);
             } else {
-                label.setText("Неправильно");
+                label.setText(WRONG);
             }
             total++;
             buttonAnswer.setVisible(false);
@@ -49,7 +53,7 @@ public class MainWindow extends JFrame {
                 rand = (int) (Math.random() * riddle.getRiddle().size());
                 question = riddle.getRiddle().get(rand).getQuestion();
                 answer = riddle.getRiddle().get(rand).getAnswer();
-                riddle.removeRiddle(rand); //удаляет объект из Аррейлиста
+                riddle.removeRiddle(rand);
                 label.setText(question);
                 textField.setText(null);
                 buttonAnswer.setVisible(true);
@@ -58,8 +62,8 @@ public class MainWindow extends JFrame {
                 buttonAnswer.setVisible(false);
                 buttonNext.setVisible(false);
                 buttonNewGame.setVisible(true);
-                textField.setText("Ваш результат: " + correctly + " из " + total);
-                label.setText("Отгадайте имена 10 персонажей из Гарри Поттера");
+                textField.setText(result);
+                label.setText(DESCRIPTION);
             }
         });
         buttonNewGame.addActionListener(e -> {
