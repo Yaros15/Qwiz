@@ -84,7 +84,7 @@ public class MainWindow extends JFrame {
     }
 
     public static void main(String[] args) {
-        MainWindow b = new MainWindow();
-        b.run();
+        MainWindow game = new MainWindow();
+        game.run();
     }
 }
